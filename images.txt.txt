@@ -1,0 +1,33 @@
+# 图片对应关系表
+# 格式:产品名称 = 图片文件名
+
+OPPO Reno14 Pro = oppo-reno14-pro.png
+华为 Mate 60 Pro = huawei-mate60-pro.png
+小米 14 Ultra = xiaomi-14-ultra.png
+vivo X100 Pro = vivo-x100-pro.png
+一加 12 = oneplus-12.png
+荣耀 Magic6 Pro = honor-magic6-pro.png
+realme GT Neo5 = realme-gt-neo5.png
+iQOO 12 = iqoo-12.png
+红米 K70 Pro = redmi-k70-pro.png
+魅族 21 = meizu-21.png
+iPhone 16 Pro Max = iphone-16-pro-max.png
+三星 Galaxy S24 Ultra = samsung-galaxy-s24-ultra.png
+华为 P70 Pro = huawei-p70-pro.png
+小米 14 Pro = xiaomi-14-pro.png
+iPhone 15 Plus = iphone-15-plus.png
+三星 Galaxy Z Fold6 = samsung-galaxy-z-fold6.png
+vivo X100 = vivo-x100.png
+一加 Ace 3 = oneplus-ace-3.png
+荣耀 90 GT = honor-90-gt.png
+realme GT 5 = realme-gt-5.png
+小米 14 = xiaomi-14.png
+OPPO Find X7 = oppo-find-x7.png
+一加 Ace 2 Pro = oneplus-ace-2-pro.png
+红米 Note 13 Pro+ = redmi-note-13-pro-plus.png
+iQOO Neo 9 = iqoo-neo-9.png
+魅族 20 Pro = meizu-20-pro.png
+努比亚 Z50 = nubia-z50.png
+中兴 Axon 50 Ultra = zte-axon-50-ultra.png
+联想拯救者 Y70 = lenovo-legion-y70.png
+华硕 ROG Phone 7 = asus-rog-phone-7.png

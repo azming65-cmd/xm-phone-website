@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>厦门珉趣科技有限公司 - 专业手机销售平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* 顶部导航栏 */
+        .top-bar {
+            background: #f5f5f5;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .top-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            font-size: 0.9rem;
+        }
+
+        .top-left span, .top-right a {
+            margin-right: 1rem;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .top-right a:hover {
+            color: #e74c3c;
+        }
+
+        /* 主头部 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .logo-section {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 248, 240, 0.95) 0%, rgba(255, 245, 238, 0.95) 100%);
+            border-radius: 18px;
+            border: 3px solid rgba(255, 107, 53, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            min-width: 360px;
+        }
+
+        .logo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .logo-section:hover::before {
+            left: 100%;
+        }
+
+        .logo-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.25);
+            border-color: rgba(255, 107, 53, 0.6);
+            background: linear-gradient(135deg, rgba(255, 248, 240, 1) 0%, rgba(255, 245, 238, 1) 100%);
+        }
+
+        .logo-section .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: block;
+            white-space: nowrap;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ff6b35 0%, #e74c3c 50%, #c0392b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-section .logo:hover {
+            transform: scale(1.02);
+            text-shadow: 3px 3px 6px rgba(255, 107, 53, 0.2);
+            background: linear-gradient(135deg, #ff5722 0%, #d84315 50%, #bf360c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-subtitle {
+            font-size: 1rem;
+            color: #ff6b35;
+            margin-top: 0.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-section {
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 2px solid #e74c3c;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .search-category {
+            border: none;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 0.8rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-tags {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .search-tags a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .search-tags a:hover {
+            color: #e74c3c;
+        }
+
+        .header-actions {
+            text-align: right;
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            background: #e74c3c;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .user-actions a {
+            color: #666;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        .user-actions a:hover {
+            color: #e74c3c;
+        }
+
+        /* 分类导航 */
+        .category-nav {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+        }
+
+        .category-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            padding: 0 2rem;
+            overflow-x: auto;
+        }
+
+        .category-item {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .category-item:hover, .category-item.active {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* 促销横幅 */
+        .promo-banner {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .promo-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .promo-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .promo-btn {
+            background: white;
+            color: #e74c3c;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 0.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: #2c3e50;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #5a6c7d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-badges {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .badge.hot {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .badge.guarantee {
+            background: #51cf66;
+            color: white;
+        }
+
+        .product-features {
+            margin: 0.5rem 0;
+        }
+
+        .feature {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #666;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .price-info {
+            margin: 0.5rem 0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+
+        .discount {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .sales {
+            color: #e74c3c;
+        }
+
+        .rating {
+            color: #f39c12;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            padding: 1rem;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .price-range {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* 浮动侧边栏 */
+        .floating-sidebar {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .sidebar-item {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            border-radius: 20px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-item:hover {
+            transform: translateX(-8px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5);
+            background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%);
+        }
+
+        .sidebar-item:active {
+            transform: translateX(-8px) scale(0.95);
+        }
+
+        .item-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .item-text {
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cart-item .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            padding: 0.3rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            min-width: 24px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(231, 76, 60, 0.4);
+            border: 2px solid white;
+        }
+
+        .sidebar-item.back-to-top {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-item.back-to-top:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+        }
+
+        .sidebar-item.back-to-top .item-text {
+            color: white;
+        }
+
+        /* 添加脉冲动画效果 */
+        .sidebar-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42, #ff6b35);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+            animation: pulse 2s infinite;
+        }
+
+        .sidebar-item:hover::before {
+            opacity: 0.3;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="top-bar">
+        <div class="top-container">
+            <div class="top-left">
+                <span>中国大陆</span>
+                <span>客服热线：400-888-8888</span>
+            </div>
+            <div class="top-right">
+                <a href="#home">网站首页</a>
+                <a href="#orders">我的订单</a>
+                <a href="#cart">购物车</a>
+                <a href="#favorites">收藏夹</a>
+                <a href="#help">帮助中心</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主头部 -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="#" class="logo">厦门珉趣科技有限公司</a>
+                <div class="logo-subtitle">专业手机销售平台</div>
+            </div>
+            
+            <div class="search-section">
+                <div class="search-box">
+                    <select class="search-category">
+                        <option>全部商品</option>
+                        <option>智能手机</option>
+                        <option>配件</option>
+                    </select>
+                    <input type="text" placeholder="搜索手机型号、品牌..." class="search-input">
+                    <button class="search-btn">搜索</button>
+                </div>
+                <div class="search-tags">
+                    <span>热门搜索：</span>
+                    <a href="#">华为Mate60</a>
+                    <a href="#">iPhone 16</a>
+                    <a href="#">小米14</a>
+                    <a href="#">OPPO Reno</a>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <div class="cart-icon">
+                    🛒 <span class="cart-count">0</span>
+                </div>
+                <div class="user-actions">
+                    <a href="#login">登录</a>
+                    <a href="#register">注册</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 分类导航 -->
+    <nav class="category-nav">
+        <div class="category-container">
+            <a href="#" class="category-item active">全部商品</a>
+            <a href="#" class="category-item">智能手机</a>
+            <a href="#" class="category-item">苹果手机</a>
+            <a href="#" class="category-item">安卓手机</a>
+            <a href="#" class="category-item">华为手机</a>
+            <a href="#" class="category-item">小米手机</a>
+            <a href="#" class="category-item">OPPO手机</a>
+            <a href="#" class="category-item">vivo手机</a>
+            <a href="#" class="category-item">折叠屏手机</a>
+            <a href="#" class="category-item">5G手机</a>
+        </div>
+    </nav>
+
+    <!-- 促销横幅 -->
+    <div class="promo-banner">
+        <div class="promo-content">
+            <span class="promo-text">🔥 限时特惠！部分机型享受政府补贴，最高优惠2000元！</span>
+            <button class="promo-btn">立即查看</button>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>精选手机产品</h1>
+        <p>30款热门机型，正品保障，价格优惠</p>
+    </section>
+
+    <main class="container">
+        <div class="products-grid" id="products">
+            <!-- 产品卡片将通过JavaScript动态生成 -->
+        </div>
+    </main>
+
+            <footer class="footer">
+            <p>&copy; 2024 厦门珉趣科技有限公司. 保留所有权利.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">闽ICP备2025083896号-2</p>
+                </footer>
+
+        <!-- 浮动侧边栏 -->
+        <div class="floating-sidebar">
+            <div class="sidebar-item cart-item">
+                <div class="item-icon">🛒</div>
+                <div class="item-text">购物车</div>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="sidebar-item">
+                <div class="item-icon">💬</div>
+                <div class="item-text">客服</div>
+            </div>
+            <div class="sidebar-item">
+                <div class="item-icon">⭐</div>
+                <div class="item-text">收藏</div>
+            </div>
+            <div class="sidebar-item back-to-top">
+                <div class="item-icon">↑</div>
+                <div class="item-text">顶部</div>
+            </div>
+        </div>
+
+        <script>
+        // 产品数据
+        const products = [
+            { name: "OPPO Reno14 Pro", image: "images/oppo-reno14-pro.png.png", price: "¥2,999" },
+            { name: "华为 Mate 60 Pro", image: "images/huawei-mate60-pro.png.png", price: "¥6,999" },
+            { name: "小米 14 Ultra", image: "images/xiaomi-14-ultra.png.png", price: "¥5,999" },
+            { name: "vivo X100 Pro", image: "images/vivo-x100-pro.png.png", price: "¥5,999" },
+            { name: "一加 12", image: "images/oneplus-12.png.png", price: "¥4,299" },
+            { name: "荣耀 Magic6 Pro", image: "images/honor-magic6-pro.png.png", price: "¥5,699" },
+            { name: "realme GT Neo5", image: "images/realme-gt-neo5.png.png", price: "¥2,599" },
+            { name: "iQOO 12", image: "images/iqoo-12.png.png", price: "¥3,999" },
+            { name: "红米 K70 Pro", image: "images/redmi-k70-pro.png.png", price: "¥2,999" },
+            { name: "魅族 21", image: "images/meizu-21.png.png", price: "¥3,299" },
+            { name: "iPhone 16 Pro Max", image: "images/iphone-16-pro-max.png.png", price: "¥9,999" },
+            { name: "三星 Galaxy S24 Ultra", image: "images/samsung-galaxy-s24-ultra.png.png", price: "¥8,999" },
+            { name: "华为 P70 Pro", image: "images/huawei-p70-pro.png.png", price: "¥6,499" },
+            { name: "小米 14 Pro", image: "images/xiaomi-14-pro.png.png", price: "¥4,999" },
+            { name: "iPhone 15 Plus", image: "images/iphone-15-plus.png.png", price: "¥6,999" },
+            { name: "三星 Galaxy Z Fold6", image: "images/samsung-galaxy-z-fold6.png.png", price: "¥12,999" },
+            { name: "vivo X100", image: "images/vivo-x100.png.png", price: "¥4,999" },
+            { name: "一加 Ace 3", image: "images/oneplus-ace-3.png.png", price: "¥2,599" },
+            { name: "荣耀 90 GT", image: "images/honor-90-gt.png.png", price: "¥2,599" },
+            { name: "realme GT 5", image: "images/realme-gt-5.png.png", price: "¥2,999" },
+            { name: "小米 14", image: "images/xiaomi-14.png.png", price: "¥3,999" },
+            { name: "OPPO Find X7", image: "images/oppo-find-x7.png.png", price: "¥5,999" },
+            { name: "一加 Ace 2 Pro", image: "images/oneplus-ace-2-pro.png.png", price: "¥2,999" },
+            { name: "红米 Note 13 Pro+", image: "images/redmi-note-13-pro-plus.png.png", price: "¥1,999" },
+            { name: "iQOO Neo 9", image: "images/iqoo-neo-9.png.png", price: "¥2,599" },
+            { name: "魅族 20 Pro", image: "images/meizu-20-pro.png.png", price: "¥2,999" },
+            { name: "努比亚 Z50", image: "images/nubia-z50.png.png", price: "¥2,999" },
+            { name: "中兴 Axon 50 Ultra", image: "images/zte-axon-50-ultra.png.png", price: "¥3,999" },
+            { name: "联想拯救者 Y70", image: "images/lenovo-legion-y70.png.png", price: "¥2,999" },
+            { name: "华硕 ROG Phone 7", image: "images/asus-rog-phone-7.png.png", price: "¥4,999" }
+        ];
+
+        // 获取原价（模拟价格）
+        function getOriginalPrice(currentPrice) {
+            const price = parseInt(currentPrice.replace('¥', '').replace(',', ''));
+            return Math.round(price * 1.2).toLocaleString();
+        }
+
+        // 生成随机销量
+        function getRandomSales() {
+            const salesOptions = [
+                '1.2万+', '8.5千+', '2.3万+', '5.7千+', '1.8万+',
+                '3.1万+', '9.2千+', '1.5万+', '4.6千+', '2.7万+',
+                '6.3千+', '1.9万+', '3.8万+', '7.1千+', '2.1万+',
+                '5.2千+', '1.6万+', '4.3万+', '8.9千+', '2.5万+',
+                '6.7千+', '1.3万+', '3.5万+', '9.6千+', '2.8万+',
+                '4.1千+', '1.7万+', '3.2万+', '7.8千+', '2.4万+'
+            ];
+            return salesOptions[Math.floor(Math.random() * salesOptions.length)];
+        }
+
+        // 生成随机评分
+        function getRandomRating() {
+            const ratings = [4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 4.4, 4.3, 4.2, 4.1];
+            return ratings[Math.floor(Math.random() * ratings.length)];
+        }
+
+        // 生成产品卡片
+        function generateProducts() {
+            const productsContainer = document.getElementById('products');
+            
+            products.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.onclick = () => openProductDetail(index);
+                
+                                 productCard.innerHTML = `
+                     <div class="product-badges">
+                         <span class="badge hot">🔥 热销</span>
+                         <span class="badge guarantee">正品保障</span>
+                     </div>
+                     <img src="${product.image}" alt="${product.name}" class="product-image">
+                     <div class="product-info">
+                         <div class="product-name">${product.name}</div>
+                         <div class="product-features">
+                             <span class="feature">5G网络</span>
+                             <span class="feature">快速充电</span>
+                         </div>
+                         <div class="product-price">${product.price}</div>
+                         <div class="price-info">
+                             <span class="original-price">原价¥${getOriginalPrice(product.price)}</span>
+                             <span class="discount">限时优惠</span>
+                         </div>
+                         <div class="product-meta">
+                             <span class="rating">⭐⭐⭐⭐⭐ ${getRandomRating()}</span>
+                         </div>
+                         <div class="product-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                             <button class="btn-detail" onclick="event.stopPropagation(); openProductDetail(${index})" style="flex: 1; padding: 0.5rem; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">查看详情</button>
+                             <button class="btn-buy" onclick="event.stopPropagation(); goToCheckout(${index})" style="flex: 1; padding: 0.5rem; background: #ff6b35; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-weight: bold;">立即购买</button>
+                         </div>
+                     </div>
+                 `;
+                
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        // 打开产品详情页
+        function openProductDetail(index) {
+            localStorage.setItem('selectedProduct', JSON.stringify(products[index]));
+            window.location.href = 'product-detail.html';
+        }
+
+        // 直接跳转到结账页面（用于测试）
+        function goToCheckout(index) {
+            const product = products[index];
+            const params = new URLSearchParams({
+                id: index,
+                name: product.name,
+                price: product.price.replace('¥', ''),
+                image: product.image
+            });
+            window.location.href = `checkout.html?${params.toString()}`;
+        }
+
+        // 页面加载完成后生成产品
+        document.addEventListener('DOMContentLoaded', generateProducts);
+    </script>
+</body>
+</html>

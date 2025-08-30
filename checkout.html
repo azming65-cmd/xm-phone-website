@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>确认订单 - 厦门珉趣科技有限公司</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f5f5; }
+        
+        .top-bar { background: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 0.5rem 0; }
+        .top-nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 2rem; }
+        .top-nav a { color: #666; text-decoration: none; margin-left: 1rem; }
+        
+        .header { background: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #333; text-decoration: none; }
+        .back-btn { background: #ff6b35; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+        
+        .container { max-width: 1200px; margin: 0.5rem auto; padding: 0 2rem; }
+        .page-title { font-size: 1.5rem; color: #333; margin-bottom: 0.5rem; }
+        
+        .main-content { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+        
+        .order-info, .payment-details { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        
+        .section { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f0f0f0; }
+        .section-title { font-size: 1.2rem; color: #333; margin-bottom: 0.8rem; }
+        
+        .address-section { background: #f8f9fa; border: 2px solid #ff6b35; border-radius: 8px; padding: 0.8rem; }
+        .btn { padding: 0.5rem 1rem; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer; margin-right: 1rem; }
+        
+        .product-item { display: flex; gap: 1rem; padding: 0.6rem 0; }
+        .product-image { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; }
+        .product-price { color: #ff6b35; font-weight: bold; font-size: 1.1rem; }
+        
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 0.6rem; padding: 0.3rem 0; }
+        .total-price { border-top: 1px solid #f0f0f0; padding-top: 0.6rem; }
+        .total-value { font-size: 1.5rem; color: #ff6b35; font-weight: bold; }
+        
+        .payment-option { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
+        
+        .submit-order { width: 100%; background: #ff6b35; color: white; border: none; padding: 1rem; border-radius: 4px; font-size: 1.1rem; font-weight: bold; cursor: pointer; }
+        
+        @media (max-width: 768px) { .main-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-nav">
+            <span>网页无障碍</span>
+            <div>
+                <a href="index.html">首页</a>
+                <a href="#">我的订单</a>
+                <a href="#">购物车</a>
+                <a href="#">收藏夹</a>
+                <a href="#">联系客服</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">厦门珉趣科技有限公司</a>
+            <button class="back-btn" onclick="history.back()">返回上页</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">确认订单</h1>
+        
+        <div class="main-content">
+            <div class="order-info">
+                <div class="section">
+                    <h2 class="section-title">确认收货地址</h2>
+                    <div class="address-section" id="addressContainer">
+                        <div style="text-align: center; padding: 1rem; color: #999;">
+                            <div style="font-size: 1rem; margin-bottom: 0.6rem;">暂无收货地址</div>
+                            <div style="margin-bottom: 0.8rem; font-size: 0.85rem;">请添加您的收货地址</div>
+                            <button class="btn" onclick="addNewAddress()" style="background: #ff6b35; color: white; border-color: #ff6b35; padding: 0.4rem 0.8rem; font-size: 0.9rem;">添加新地址</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">确认订单信息</h2>
+                    <div class="product-item" id="productInfo">
+                        <div class="product-image" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.8rem; border: 1px solid #ddd;">
+                            📱<br>手机
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; margin-bottom: 0.5rem;" id="productName">加载中...</div>
+                            <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;" id="productSpecs">加载中...</div>
+                            <div class="product-price" id="productPrice">¥0</div>
+                            <div style="color: #666; font-size: 0.9rem;">数量: 1</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品规格选择 -->
+                    <div class="product-options" style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #f0f0f0;">
+                        <h3 style="font-size: 1rem; color: #333; margin-bottom: 0.6rem;">产品规格</h3>
+                        
+                        <!-- 机身颜色选择 -->
+                        <div class="option-group" style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">机身颜色</div>
+                            <div class="color-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <div class="color-option selected" onclick="selectColor(this, '嫩绿色')" style="width: 45px; height: 45px; border: 2px solid #ff6b35; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #90EE90; cursor: pointer; position: relative;">
+                                    <span style="font-size: 0.65rem; color: #333;">嫩绿色</span>
+                                </div>
+                                <div class="color-option" onclick="selectColor(this, '午夜黑')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #2F2F2F; cursor: pointer; position: relative;">
+                                    <span style="font-size: 0.65rem; color: white;">午夜黑</span>
+                                </div>
+                                <div class="color-option" onclick="selectColor(this, '浅紫色')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #E6E6FA; cursor: pointer; position: relative;">
+                                    <span style="font-size: 0.65rem; color: #333;">浅紫色</span>
+                                </div>
+                                <div class="color-option" onclick="selectColor(this, '珍珠白')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #F5F5F5; cursor: pointer; position: relative;">
+                                    <span style="font-size: 0.65rem; color: #333;">珍珠白</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 存储容量选择 -->
+                        <div class="option-group" style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">存储容量</div>
+                            <div class="storage-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <div class="storage-option selected" onclick="selectStorage(this, '16GB+256GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">16GB+256GB</div>
+                                <div class="storage-option" onclick="selectStorage(this, '8GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">8GB+512GB</div>
+                                <div class="storage-option" onclick="selectStorage(this, '10GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">10GB+512GB</div>
+                                <div class="storage-option" onclick="selectStorage(this, '12GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">12GB+512GB</div>
+                                <div class="storage-option" onclick="selectStorage(this, '16GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">16GB+512GB</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 网络类型选择 -->
+                        <div class="option-group" style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">网络类型</div>
+                            <div class="network-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <div class="network-option selected" onclick="selectNetwork(this, '5G全网通')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">5G全网通</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 数量选择 -->
+                        <div class="option-group">
+                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">购买数量</div>
+                            <div class="quantity-selector" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <button onclick="changeQuantity(-1)" style="width: 26px; height: 26px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer; font-size: 0.9rem; color: #666;">-</button>
+                                <span id="quantityDisplay" style="min-width: 32px; text-align: center; font-weight: 500;">1</span>
+                                <button onclick="changeQuantity(1)" style="width: 26px; height: 26px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer; font-size: 0.9rem; color: #666;">+</button>
+                                <span style="font-size: 0.8rem; color: #666; margin-left: 0.6rem;">有货(限购2件)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">配送服务</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+                        <span style="color: #666;">运费包邮</span>
+                        <span style="color: #ff6b35; font-weight: bold;">¥0</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">订单备注</h2>
+                    <textarea placeholder="请输入备注信息，付款后商家可见" style="width: 100%; height: 80px; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; resize: none;"></textarea>
+                </div>
+            </div>
+
+            <div class="payment-details">
+                <h2 class="section-title">付款详情 共1件商品</h2>
+                
+                <div class="price-row">
+                    <span style="color: #666;">商品总价</span>
+                    <span style="font-weight: bold;" id="totalPrice">¥0</span>
+                </div>
+                
+                <div class="price-row">
+                    <span style="color: #666;">运费</span>
+                    <span style="font-weight: bold;">¥0</span>
+                </div>
+                
+                <div class="price-row total-price">
+                    <span style="font-size: 1.1rem; font-weight: bold;">实付款</span>
+                    <span class="total-value" id="finalPrice">¥0</span>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="margin-bottom: 1rem; color: #333;">支付方式</h3>
+                    <div class="payment-option">
+                        <input type="radio" name="payment" id="alipay" checked>
+                        <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+                            <img src="images/alipay-icon.png.png" alt="支付宝" style="width: 32px; height: 32px; object-fit: contain;">
+                        </div>
+                        <label for="alipay">支付宝</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" name="payment" id="wechat">
+                        <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+                            <img src="images/weixinpayicon.png.png" alt="微信支付" style="width: 32px; height: 32px; object-fit: contain;">
+                        </div>
+                        <label for="wechat">微信支付</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" name="payment" id="unionpay">
+                        <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+                            <img src="images/yinlianpay-icon.png.png" alt="银联支付" style="width: 32px; height: 32px; object-fit: contain;">
+                        </div>
+                        <label for="unionpay">银联支付</label>
+                    </div>
+                </div>
+
+                <div style="margin: 1rem 0; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #666;">
+                    <input type="checkbox" id="agree" checked>
+                    <label for="agree">我已阅读并同意《用户协议》和《隐私政策》</label>
+                </div>
+
+                <button class="submit-order" onclick="submitOrder()">提交订单</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时获取商品信息
+        window.onload = function() {
+            loadProductInfo();
+        };
+
+        // 全局变量存储选择的规格
+        let selectedColor = '嫩绿色';
+        let selectedStorage = '16GB+256GB';
+        let selectedNetwork = '5G全网通';
+        let quantity = 1;
+
+        // 获取URL参数
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // 加载商品信息
+        function loadProductInfo() {
+            const productId = getUrlParameter('id');
+            const productName = getUrlParameter('name');
+            const productPrice = getUrlParameter('price');
+            const productImage = getUrlParameter('image');
+            
+            if (productId && productName && productPrice) {
+                // 更新商品名称
+                document.getElementById('productName').textContent = productName;
+                
+                // 更新商品规格（这里可以根据实际需求调整）
+                document.getElementById('productSpecs').textContent = '正品保障 | 全国联保';
+                
+                // 更新商品价格
+                document.getElementById('productPrice').textContent = `¥${productPrice}`;
+                
+                // 更新总价
+                document.getElementById('totalPrice').textContent = `¥${productPrice}`;
+                document.getElementById('finalPrice').textContent = `¥${productPrice}`;
+                
+                // 如果有图片，更新图片
+                if (productImage) {
+                    const imageContainer = document.querySelector('.product-image');
+                    imageContainer.innerHTML = `<img src="${productImage}" alt="${productName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">`;
+                }
+            } else {
+                // 如果没有参数，显示默认信息
+                document.getElementById('productName').textContent = '商品信息加载失败';
+                document.getElementById('productSpecs').textContent = '请返回商品页面重新选择';
+                document.getElementById('productPrice').textContent = '¥0';
+                document.getElementById('totalPrice').textContent = '¥0';
+                document.getElementById('finalPrice').textContent = '¥0';
+            }
+        }
+
+        function submitOrder() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').id;
+            const agreed = document.getElementById('agree').checked;
+            
+            // 检查是否已添加地址
+            const addressContainer = document.getElementById('addressContainer');
+            if (!addressContainer.querySelector('.address-info')) {
+                alert('请先添加收货地址');
+                return;
+            }
+            
+            if (!agreed) {
+                alert('请先同意用户协议和隐私政策');
+                return;
+            }
+            
+            // 获取实际价格
+            const finalPrice = document.getElementById('finalPrice').textContent;
+            
+            let paymentMethodName = '';
+            switch(paymentMethod) {
+                case 'alipay':
+                    paymentMethodName = '支付宝';
+                    break;
+                case 'wechat':
+                    paymentMethodName = '微信支付';
+                    break;
+                case 'unionpay':
+                    paymentMethodName = '银联支付';
+                    break;
+                default:
+                    paymentMethodName = '未知支付方式';
+            }
+            
+            alert(`订单提交成功！\n商品规格: ${selectedColor} ${selectedStorage} ${selectedNetwork}\n数量: ${quantity}\n支付方式: ${paymentMethodName}\n订单金额: ${finalPrice}`);
+        }
+
+        function addNewAddress() {
+            const addressContainer = document.getElementById('addressContainer');
+            
+            // 创建地址表单
+            const addressForm = `
+                <div class="address-form">
+                                    <div style="margin-bottom: 1rem;">
+                    <input type="text" id="receiverName" placeholder="收货人姓名" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 0.5rem;">
+                    <input type="tel" id="receiverPhone" placeholder="手机号码" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 0.5rem;">
+                    <textarea id="receiverAddress" placeholder="详细地址" style="width: 100%; height: 50px; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; resize: none;"></textarea>
+                </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn" onclick="saveAddress()" style="background: #ff6b35; color: white; border-color: #ff6b35;">保存地址</button>
+                        <button class="btn" onclick="cancelAddAddress()">取消</button>
+                    </div>
+                </div>
+            `;
+            
+            addressContainer.innerHTML = addressForm;
+        }
+
+        function saveAddress() {
+            const name = document.getElementById('receiverName').value.trim();
+            const phone = document.getElementById('receiverPhone').value.trim();
+            const address = document.getElementById('receiverAddress').value.trim();
+            
+            if (!name || !phone || !address) {
+                alert('请填写完整的地址信息');
+                return;
+            }
+            
+            // 简单的手机号验证
+            if (!/^1[3-9]\d{9}$/.test(phone)) {
+                alert('请输入正确的手机号码');
+                return;
+            }
+            
+            const addressContainer = document.getElementById('addressContainer');
+            
+            // 显示保存的地址
+            const addressInfo = `
+                <div class="address-info">
+                    <div style="font-weight: bold; margin-bottom: 0.5rem;">${name} ${phone}</div>
+                    <div style="color: #666; line-height: 1.5;">${address}</div>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 0.8rem;">
+                    <button class="btn" onclick="editAddress()">编辑地址</button>
+                    <button class="btn" onclick="addNewAddress()">添加新地址</button>
+                </div>
+            `;
+            
+            addressContainer.innerHTML = addressInfo;
+        }
+
+        function cancelAddAddress() {
+            const addressContainer = document.getElementById('addressContainer');
+            
+            // 恢复到初始状态
+            const initialState = `
+                <div style="text-align: center; padding: 1rem; color: #999;">
+                    <div style="font-size: 1rem; margin-bottom: 0.6rem;">暂无收货地址</div>
+                    <div style="margin-bottom: 0.8rem; font-size: 0.85rem;">请添加您的收货地址</div>
+                    <button class="btn" onclick="addNewAddress()" style="background: #ff6b35; color: white; border-color: #ff6b35; padding: 0.4rem 0.8rem; font-size: 0.9rem;">添加新地址</button>
+                </div>
+            `;
+            
+            addressContainer.innerHTML = initialState;
+        }
+
+        function editAddress() {
+            addNewAddress(); // 重新调用添加地址函数，显示编辑表单
+        }
+
+        // 选择机身颜色
+        function selectColor(element, color) {
+            // 移除所有颜色选项的选中状态
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.style.borderColor = '#ddd';
+            });
+            
+            // 设置当前选项为选中状态
+            element.style.borderColor = '#ff6b35';
+            selectedColor = color;
+            
+            // 更新商品规格显示
+            updateProductSpecs();
+        }
+
+        // 选择存储容量
+        function selectStorage(element, storage) {
+            // 移除所有存储选项的选中状态
+            document.querySelectorAll('.storage-option').forEach(option => {
+                option.style.borderColor = '#ddd';
+                option.style.color = '#666';
+                option.style.fontWeight = '400';
+            });
+            
+            // 设置当前选项为选中状态
+            element.style.borderColor = '#ff6b35';
+            element.style.color = '#ff6b35';
+            element.style.fontWeight = '500';
+            selectedStorage = storage;
+            
+            // 更新商品规格显示
+            updateProductSpecs();
+        }
+
+        // 选择网络类型
+        function selectNetwork(element, network) {
+            // 移除所有网络选项的选中状态
+            document.querySelectorAll('.network-option').forEach(option => {
+                option.style.borderColor = '#ddd';
+                option.style.color = '#666';
+                option.style.fontWeight = '400';
+            });
+            
+            // 设置当前选项为选中状态
+            element.style.borderColor = '#ff6b35';
+            element.style.color = '#ff6b35';
+            element.style.fontWeight = '500';
+            selectedNetwork = network;
+            
+            // 更新商品规格显示
+            updateProductSpecs();
+        }
+
+        // 改变数量
+        function changeQuantity(change) {
+            const newQuantity = Math.max(1, Math.min(2, quantity + change));
+            if (newQuantity !== quantity) {
+                quantity = newQuantity;
+                document.getElementById('quantityDisplay').textContent = quantity;
+                updateProductSpecs();
+            }
+        }
+
+        // 更新商品规格显示
+        function updateProductSpecs() {
+            const specsElement = document.getElementById('productSpecs');
+            if (specsElement) {
+                specsElement.textContent = `机身颜色: ${selectedColor} | 存储容量: ${selectedStorage} | 网络类型: ${selectedNetwork}`;
+            }
+        }
+
+        // 支付方式选择
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.style.borderColor = '#ddd';
+                });
+                
+                this.style.borderColor = '#ff6b35';
+            });
+        });
+    </script>
+</body>
+</html>
