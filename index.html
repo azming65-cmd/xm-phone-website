@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>厦门珉趣科技有限公司 - 专业手机销售平台</title>
+            <title>杭州境树网络科技有限公司 - 专业手机销售平台</title>
     <style>
         * {
             margin: 0;
@@ -100,14 +100,14 @@
         }
 
         .logo-section .logo {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             font-weight: 800;
             text-decoration: none;
             display: block;
             white-space: nowrap;
             line-height: 1.2;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             background: linear-gradient(135deg, #ff6b35 0%, #e74c3c 50%, #c0392b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -645,7 +645,7 @@
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
-                <a href="#" class="logo">厦门珉趣科技有限公司</a>
+                <a href="#" class="logo">杭州境树网络科技有限公司</a>
                 <div class="logo-subtitle">专业手机销售平台</div>
             </div>
             
@@ -684,15 +684,13 @@
     <nav class="category-nav">
         <div class="category-container">
             <a href="#" class="category-item active">全部商品</a>
-            <a href="#" class="category-item">智能手机</a>
             <a href="#" class="category-item">苹果手机</a>
             <a href="#" class="category-item">安卓手机</a>
             <a href="#" class="category-item">华为手机</a>
             <a href="#" class="category-item">小米手机</a>
             <a href="#" class="category-item">OPPO手机</a>
             <a href="#" class="category-item">vivo手机</a>
-            <a href="#" class="category-item">折叠屏手机</a>
-            <a href="#" class="category-item">5G手机</a>
+            <a href="#" class="category-item">手机壳</a>
         </div>
     </nav>
 
@@ -716,8 +714,7 @@
     </main>
 
             <footer class="footer">
-            <p>&copy; 2024 厦门珉趣科技有限公司. 保留所有权利.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">闽ICP备2025083896号-2</p>
+            <p>&copy; 2024 杭州境树网络科技有限公司. 保留所有权利.</p>
                 </footer>
 
         <!-- 浮动侧边栏 -->
@@ -773,7 +770,9 @@
             { name: "努比亚 Z50", image: "images/nubia-z50.png.png", price: "¥2,999" },
             { name: "中兴 Axon 50 Ultra", image: "images/zte-axon-50-ultra.png.png", price: "¥3,999" },
             { name: "联想拯救者 Y70", image: "images/lenovo-legion-y70.png.png", price: "¥2,999" },
-            { name: "华硕 ROG Phone 7", image: "images/asus-rog-phone-7.png.png", price: "¥4,999" }
+            { name: "华硕 ROG Phone 7", image: "images/asus-rog-phone-7.png.png", price: "¥4,999" },
+            { name: "云雾青松菲林手机壳", image: "images/yunwu.png.png", price: "¥9.9" },
+            { name: "磁吸防摔手机壳", image: "images/fangshuai.png.png", price: "¥9.9" }
         ];
 
         // 获取原价（模拟价格）
@@ -810,6 +809,24 @@
                 productCard.className = 'product-card';
                 productCard.onclick = () => openProductDetail(index);
                 
+                // 判断是否为手机壳商品，显示不同的功能标签
+                let features = '';
+                if (product.name.includes('手机壳')) {
+                    features = `
+                        <div class="product-features">
+                            <span class="feature">适用于苹果</span>
+                            <span class="feature">硅胶</span>
+                        </div>
+                    `;
+                } else {
+                    features = `
+                        <div class="product-features">
+                            <span class="feature">5G网络</span>
+                            <span class="feature">快速充电</span>
+                        </div>
+                    `;
+                }
+                
                                  productCard.innerHTML = `
                      <div class="product-badges">
                          <span class="badge hot">🔥 热销</span>
@@ -818,10 +835,7 @@
                      <img src="${product.image}" alt="${product.name}" class="product-image">
                      <div class="product-info">
                          <div class="product-name">${product.name}</div>
-                         <div class="product-features">
-                             <span class="feature">5G网络</span>
-                             <span class="feature">快速充电</span>
-                         </div>
+                         ${features}
                          <div class="product-price">${product.price}</div>
                          <div class="price-info">
                              <span class="original-price">原价¥${getOriginalPrice(product.price)}</span>

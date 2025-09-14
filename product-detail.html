@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>产品详情 - 厦门珉趣科技有限公司</title>
+            <title>产品详情 - 杭州境树网络科技有限公司</title>
     <style>
         * {
             margin: 0;
@@ -37,7 +37,7 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #333;
             text-decoration: none;
@@ -137,6 +137,50 @@
 
         .spec-value {
             color: #666;
+        }
+
+        /* 手机型号选择样式 */
+        .phone-model-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .phone-model-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .phone-model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .phone-model-btn {
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .phone-model-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .phone-model-btn.selected {
+            border-color: #ff6b35;
+            background: #ff6b35;
+            color: white;
         }
 
         .action-buttons {
@@ -259,7 +303,7 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="index.html" class="logo">📱 厦门珉趣科技</a>
+            <a href="index.html" class="logo">杭州境树网络科技有限公司</a>
             <button class="back-btn" onclick="goBack()">返回首页</button>
         </nav>
     </header>
@@ -274,6 +318,7 @@
         let selectedProduct = null;
         let quantity = 1;
         let cartItems = [];
+        let selectedPhoneModel = '其他手机型号';
 
         // 页面加载时获取产品信息
         document.addEventListener('DOMContentLoaded', function() {
@@ -291,6 +336,54 @@
         function displayProductDetail() {
             const container = document.getElementById('productDetail');
             
+            // 判断是否为手机壳商品
+            const isPhoneCase = selectedProduct.name.includes('手机壳');
+            
+            let specsSection = '';
+            if (isPhoneCase) {
+                // 手机壳显示手机型号选择
+                specsSection = `
+                    <div class="phone-model-section">
+                        <div class="phone-model-title">适用手机型号</div>
+                        <div class="phone-model-grid">
+                            <button class="phone-model-btn selected" onclick="selectPhoneModel('其他手机型号')">其他手机型号</button>
+                            <button class="phone-model-btn" onclick="selectPhoneModel('iPhone 16 Pro Max')">iPhone 16 Pro Max</button>
+                            <button class="phone-model-btn" onclick="selectPhoneModel('iPhone 16 Pro')">iPhone 16 Pro</button>
+                            <button class="phone-model-btn" onclick="selectPhoneModel('iPhone 16')">iPhone 16</button>
+                            <button class="phone-model-btn" onclick="selectPhoneModel('iPhone 16 Plus')">iPhone 16 Plus</button>
+                            <button class="phone-model-btn" onclick="selectPhoneModel('iPhone 15')">iPhone 15</button>
+                            <button class="phone-model-btn" onclick="selectPhoneModel('iPhone 15 Plus')">iPhone 15 Plus</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // 手机显示技术规格
+                specsSection = `
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">处理器</span>
+                            <span class="spec-value">骁龙8 Gen 3</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">内存</span>
+                            <span class="spec-value">12GB LPDDR5X</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">存储</span>
+                            <span class="spec-value">256GB UFS 4.0</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">屏幕</span>
+                            <span class="spec-value">6.7英寸 2K AMOLED</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">电池</span>
+                            <span class="spec-value">5000mAh</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
             container.innerHTML = `
                 <div class="product-layout">
                     <div class="product-image-section">
@@ -300,32 +393,13 @@
                         <h1>${selectedProduct.name}</h1>
                         <div class="product-price">${selectedProduct.price}</div>
                         <p class="product-description">
-                            这款${selectedProduct.name}采用最新的技术，为用户提供卓越的使用体验。
-                            无论是性能、拍照还是续航，都能满足您的各种需求。
+                            ${isPhoneCase ? 
+                                `这款${selectedProduct.name}采用优质材料制作，完美适配各种手机型号，为用户提供卓越的保护体验。无论是防摔、美观还是手感，都能满足您的各种需求。` :
+                                `这款${selectedProduct.name}采用最新的技术，为用户提供卓越的使用体验。无论是性能、拍照还是续航，都能满足您的各种需求。`
+                            }
                         </p>
                         
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">处理器</span>
-                                <span class="spec-value">骁龙8 Gen 3</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">内存</span>
-                                <span class="spec-value">12GB LPDDR5X</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">存储</span>
-                                <span class="spec-value">256GB UFS 4.0</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">屏幕</span>
-                                <span class="spec-value">6.7英寸 2K AMOLED</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">电池</span>
-                                <span class="spec-value">5000mAh</span>
-                            </div>
-                        </div>
+                        ${specsSection}
                         
                         <div class="quantity-selector">
                             <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
@@ -352,6 +426,18 @@
             updateCartDisplay();
         }
 
+        // 选择手机型号
+        function selectPhoneModel(model) {
+            selectedPhoneModel = model;
+            
+            // 更新按钮样式
+            document.querySelectorAll('.phone-model-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+        }
+
         // 改变数量
         function changeQuantity(change) {
             quantity = Math.max(1, quantity + change);
@@ -360,16 +446,20 @@
 
         // 添加到购物车
         function addToCart() {
-            const existingItem = cartItems.find(item => item.name === selectedProduct.name);
+            const isPhoneCase = selectedProduct.name.includes('手机壳');
+            const itemKey = isPhoneCase ? `${selectedProduct.name} (${selectedPhoneModel})` : selectedProduct.name;
+            
+            const existingItem = cartItems.find(item => item.name === itemKey);
             
             if (existingItem) {
                 existingItem.quantity += quantity;
             } else {
                 cartItems.push({
-                    name: selectedProduct.name,
+                    name: itemKey,
                     price: selectedProduct.price,
                     quantity: quantity,
-                    image: selectedProduct.image
+                    image: selectedProduct.image,
+                    phoneModel: isPhoneCase ? selectedPhoneModel : null
                 });
             }
             

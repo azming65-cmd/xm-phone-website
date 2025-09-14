@@ -1,0 +1,25 @@
+{
+  "name": "phone-store-frontend",
+  "version": "1.0.0",
+  "description": "杭州境树网络科技有限公司 - 专业手机销售平台",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s . -l 3000",
+    "build": "echo 'No build step required for static site'",
+    "dev": "npx serve -s . -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "phone",
+    "store",
+    "ecommerce",
+    "frontend"
+  ],
+  "author": "杭州境树网络科技有限公司",
+  "license": "MIT"
+}

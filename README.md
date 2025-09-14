@@ -1,109 +1,86 @@
-# 厦门珉趣科技有限公司网站
+# 杭州境树网络科技有限公司 - 专业手机销售平台
 
-这是一个专业的前端手机销售网站，展示30款热门手机产品，包含完整的购物流程。
+这是一个专业的手机销售平台前端项目，提供完整的电商购物体验。
 
-## 功能特点
+## 功能特性
 
-### 🏠 首页 (index.html)
-- 展示30款热门手机产品
-- 响应式网格布局，支持移动端
-- 现代化UI设计，渐变背景
-- 点击产品卡片跳转到详情页
+- 🛍️ 产品展示和搜索
+- 📱 产品详情页面
+- 🛒 购物车功能
+- 💳 订单确认页面
+- 📱 响应式设计
+- 🎨 现代化UI界面
 
-### 📱 产品详情页 (product-detail.html)
-- 详细的产品信息和规格参数
-- 数量选择器
-- 购物车功能
-- 加入购物车和立即购买按钮
-- 实时购物车总价计算
+## 技术栈
 
-### 🛒 结账页面 (checkout.html)
-- 订单摘要显示
-- 收货地址填写
-- 支付方式选择（微信支付/支付宝）
-- 发票类型选择（个人/公司）
-- 表单验证和订单提交
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- 响应式设计
 
-## 技术特点
+## 部署到Railway
 
-- **纯前端实现**：无需后端服务器
-- **响应式设计**：支持各种屏幕尺寸
-- **现代化UI**：使用CSS Grid、Flexbox和渐变
-- **本地存储**：使用localStorage保存购物车和订单信息
-- **交互体验**：悬停效果、动画过渡、表单验证
-
-## 使用方法
-
-1. **浏览产品**：打开 `index.html` 查看所有手机产品
-2. **查看详情**：点击任意产品卡片进入详情页
-3. **添加到购物车**：在详情页选择数量并添加到购物车
-4. **结账购买**：点击"立即购买"进入结账页面
-5. **填写信息**：完善收货地址、选择支付方式和发票类型
-6. **提交订单**：确认信息后提交订单
-
-## 文件结构
-
-```
-├── index.html              # 首页 - 产品展示
-├── product-detail.html     # 产品详情页 - 购物车功能
-├── checkout.html          # 结账页面 - 订单确认
-├── images/                # 产品图片文件夹
-│   ├── oppo-reno14-pro.png.png
-│   ├── huawei-mate60-pro.png.png
-│   ├── xiaomi-14-ultra.png.png
-│   └── ... (共30张图片)
-├── images.txt.txt         # 图片对应关系表
-└── README.md              # 说明文档
+### 1. 准备项目
+```bash
+# 确保所有文件都在项目根目录
+# 包括: index.html, checkout.html, product-detail.html, images/ 等
 ```
 
-## 产品列表
+### 2. 推送到GitHub
+```bash
+git init
+git add .
+git commit -m "Initial commit: Frontend deployment"
+git remote add origin https://github.com/your-username/your-repo.git
+git push -u origin main
+```
 
-网站包含以下30款热门手机：
+### 3. 在Railway部署
+1. 访问 [railway.app](https://railway.app)
+2. 连接GitHub仓库
+3. 选择项目根目录
+4. 配置环境变量（如需要）
+5. 部署
 
-1. OPPO Reno14 Pro
-2. 华为 Mate 60 Pro
-3. 小米 14 Ultra
-4. vivo X100 Pro
-5. 一加 12
-6. 荣耀 Magic6 Pro
-7. realme GT Neo5
-8. iQOO 12
-9. 红米 K70 Pro
-10. 魅族 21
-11. iPhone 16 Pro Max
-12. 三星 Galaxy S24 Ultra
-13. 华为 P70 Pro
-14. 小米 14 Pro
-15. iPhone 15 Plus
-16. 三星 Galaxy Z Fold6
-17. vivo X100
-18. 一加 Ace 3
-19. 荣耀 90 GT
-20. realme GT 5
-21. 小米 14
-22. OPPO Find X7
-23. 一加 Ace 2 Pro
-24. 红米 Note 13 Pro+
-25. iQOO Neo 9
-26. 魅族 20 Pro
-27. 努比亚 Z50
-28. 中兴 Axon 50 Ultra
-29. 联想拯救者 Y70
-30. 华硕 ROG Phone 7
+## 项目结构
 
-## 浏览器兼容性
+```
+├── index.html              # 首页
+├── checkout.html           # 订单确认页
+├── product-detail.html     # 产品详情页
+├── images/                 # 图片资源
+├── package.json            # 项目配置
+├── railway.json            # Railway部署配置
+└── README.md              # 项目说明
+```
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+## 本地开发
+
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
+
+# 或直接使用serve
+npx serve -s . -l 3000
+```
+
+## 环境变量
+
+当前版本无需环境变量，所有配置都在代码中。
 
 ## 注意事项
 
-- 这是一个演示网站，支付功能仅作展示用途
-- 所有数据存储在浏览器本地，刷新页面后购物车会清空
-- 建议在现代浏览器中打开以获得最佳体验
+- 这是一个纯前端项目
+- 所有数据都是静态的
+- 支付功能需要后端支持
+- 图片资源需要确保路径正确
 
-## 开发说明
+## 更新日志
 
-网站使用纯HTML、CSS和JavaScript开发，无需安装任何依赖，直接在浏览器中打开即可使用。
+### v1.0.0
+- 初始版本发布
+- 包含完整的电商前端功能
+- 支持Railway部署

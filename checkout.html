@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>确认订单 - 厦门珉趣科技有限公司</title>
+    <title>确认订单 - 杭州境树网络科技有限公司</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f5f5; }
@@ -14,7 +14,7 @@
         
         .header { background: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
-        .logo { font-size: 1.8rem; font-weight: bold; color: #333; text-decoration: none; }
+        .logo { font-size: 1.3rem; font-weight: bold; color: #333; text-decoration: none; }
         .back-btn { background: #ff6b35; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
         
         .container { max-width: 1200px; margin: 0.5rem auto; padding: 0 2rem; }
@@ -61,7 +61,7 @@
 
     <div class="header">
         <div class="header-container">
-            <a href="index.html" class="logo">厦门珉趣科技有限公司</a>
+            <a href="index.html" class="logo">杭州境树网络科技有限公司</a>
             <button class="back-btn" onclick="history.back()">返回上页</button>
         </div>
     </div>
@@ -100,42 +100,59 @@
                     <div class="product-options" style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #f0f0f0;">
                         <h3 style="font-size: 1rem; color: #333; margin-bottom: 0.6rem;">产品规格</h3>
                         
-                        <!-- 机身颜色选择 -->
-                        <div class="option-group" style="margin-bottom: 0.8rem;">
-                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">机身颜色</div>
-                            <div class="color-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                <div class="color-option selected" onclick="selectColor(this, '嫩绿色')" style="width: 45px; height: 45px; border: 2px solid #ff6b35; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #90EE90; cursor: pointer; position: relative;">
-                                    <span style="font-size: 0.65rem; color: #333;">嫩绿色</span>
-                                </div>
-                                <div class="color-option" onclick="selectColor(this, '午夜黑')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #2F2F2F; cursor: pointer; position: relative;">
-                                    <span style="font-size: 0.65rem; color: white;">午夜黑</span>
-                                </div>
-                                <div class="color-option" onclick="selectColor(this, '浅紫色')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #E6E6FA; cursor: pointer; position: relative;">
-                                    <span style="font-size: 0.65rem; color: #333;">浅紫色</span>
-                                </div>
-                                <div class="color-option" onclick="selectColor(this, '珍珠白')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #F5F5F5; cursor: pointer; position: relative;">
-                                    <span style="font-size: 0.65rem; color: #333;">珍珠白</span>
-                                </div>
+                        <!-- 手机型号选择（仅对手机壳商品显示） -->
+                        <div class="option-group" id="phoneModelGroup" style="margin-bottom: 0.8rem; display: none;">
+                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">适用手机型号</div>
+                            <div class="phone-model-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <div class="phone-model-option selected" onclick="selectPhoneModel(this, '其他手机型号')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">其他手机型号</div>
+                                <div class="phone-model-option" onclick="selectPhoneModel(this, 'iPhone 16 Pro Max')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">iPhone 16 Pro Max</div>
+                                <div class="phone-model-option" onclick="selectPhoneModel(this, 'iPhone 16 Pro')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">iPhone 16 Pro</div>
+                                <div class="phone-model-option" onclick="selectPhoneModel(this, 'iPhone 16')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">iPhone 16</div>
+                                <div class="phone-model-option" onclick="selectPhoneModel(this, 'iPhone 16 Plus')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">iPhone 16 Plus</div>
+                                <div class="phone-model-option" onclick="selectPhoneModel(this, 'iPhone 15')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">iPhone 15</div>
+                                <div class="phone-model-option" onclick="selectPhoneModel(this, 'iPhone 15 Plus')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">iPhone 15 Plus</div>
                             </div>
                         </div>
                         
-                        <!-- 存储容量选择 -->
-                        <div class="option-group" style="margin-bottom: 0.8rem;">
-                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">存储容量</div>
-                            <div class="storage-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                <div class="storage-option selected" onclick="selectStorage(this, '16GB+256GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">16GB+256GB</div>
-                                <div class="storage-option" onclick="selectStorage(this, '8GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">8GB+512GB</div>
-                                <div class="storage-option" onclick="selectStorage(this, '10GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">10GB+512GB</div>
-                                <div class="storage-option" onclick="selectStorage(this, '12GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">12GB+512GB</div>
-                                <div class="storage-option" onclick="selectStorage(this, '16GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">16GB+512GB</div>
+                        <!-- 手机规格选择（仅对手机商品显示） -->
+                        <div class="option-group" id="phoneSpecsGroup" style="margin-bottom: 0.8rem;">
+                            <!-- 机身颜色选择 -->
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">机身颜色</div>
+                                <div class="color-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <div class="color-option selected" onclick="selectColor(this, '嫩绿色')" style="width: 45px; height: 45px; border: 2px solid #ff6b35; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #90EE90; cursor: pointer; position: relative;">
+                                        <span style="font-size: 0.65rem; color: #333;">嫩绿色</span>
+                                    </div>
+                                    <div class="color-option" onclick="selectColor(this, '午夜黑')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #2F2F2F; cursor: pointer; position: relative;">
+                                        <span style="font-size: 0.65rem; color: white;">午夜黑</span>
+                                    </div>
+                                    <div class="color-option" onclick="selectColor(this, '浅紫色')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #E6E6FA; cursor: pointer; position: relative;">
+                                        <span style="font-size: 0.65rem; color: #333;">浅紫色</span>
+                                    </div>
+                                    <div class="color-option" onclick="selectColor(this, '珍珠白')" style="width: 45px; height: 45px; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: #F5F5F5; cursor: pointer; position: relative;">
+                                        <span style="font-size: 0.65rem; color: #333;">珍珠白</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- 网络类型选择 -->
-                        <div class="option-group" style="margin-bottom: 0.8rem;">
-                            <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">网络类型</div>
-                            <div class="network-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                <div class="network-option selected" onclick="selectNetwork(this, '5G全网通')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">5G全网通</div>
+                            
+                            <!-- 存储容量选择 -->
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">存储容量</div>
+                                <div class="storage-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <div class="storage-option selected" onclick="selectStorage(this, '16GB+256GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">16GB+256GB</div>
+                                    <div class="storage-option" onclick="selectStorage(this, '8GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">8GB+512GB</div>
+                                    <div class="storage-option" onclick="selectStorage(this, '10GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">10GB+512GB</div>
+                                    <div class="storage-option" onclick="selectStorage(this, '12GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">12GB+512GB</div>
+                                    <div class="storage-option" onclick="selectStorage(this, '16GB+512GB')" style="padding: 0.4rem 0.7rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #666;">16GB+512GB</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 网络类型选择 -->
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="font-weight: 500; color: #333; margin-bottom: 0.4rem;">网络类型</div>
+                                <div class="network-options" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <div class="network-option selected" onclick="selectNetwork(this, '5G全网通')" style="padding: 0.4rem 0.7rem; border: 2px solid #ff6b35; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; color: #ff6b35; font-weight: 500;">5G全网通</div>
+                                </div>
                             </div>
                         </div>
                         
@@ -229,7 +246,9 @@
         let selectedColor = '嫩绿色';
         let selectedStorage = '16GB+256GB';
         let selectedNetwork = '5G全网通';
+        let selectedPhoneModel = '其他手机型号';
         let quantity = 1;
+        let isPhoneCase = false;
 
         // 获取URL参数
         function getUrlParameter(name) {
@@ -245,11 +264,24 @@
             const productImage = getUrlParameter('image');
             
             if (productId && productName && productPrice) {
+                // 判断是否为手机壳商品
+                isPhoneCase = productName.includes('手机壳');
+                
                 // 更新商品名称
                 document.getElementById('productName').textContent = productName;
                 
-                // 更新商品规格（这里可以根据实际需求调整）
-                document.getElementById('productSpecs').textContent = '正品保障 | 全国联保';
+                // 根据商品类型显示不同的规格选择
+                if (isPhoneCase) {
+                    // 手机壳商品显示手机型号选择
+                    document.getElementById('phoneModelGroup').style.display = 'block';
+                    document.getElementById('phoneSpecsGroup').style.display = 'none';
+                    document.getElementById('productSpecs').textContent = '正品保障 | 全国联保';
+                } else {
+                    // 手机商品显示技术规格选择
+                    document.getElementById('phoneModelGroup').style.display = 'none';
+                    document.getElementById('phoneSpecsGroup').style.display = 'block';
+                    document.getElementById('productSpecs').textContent = '正品保障 | 全国联保';
+                }
                 
                 // 更新商品价格
                 document.getElementById('productPrice').textContent = `¥${productPrice}`;
@@ -263,6 +295,9 @@
                     const imageContainer = document.querySelector('.product-image');
                     imageContainer.innerHTML = `<img src="${productImage}" alt="${productName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">`;
                 }
+                
+                // 更新商品规格显示
+                updateProductSpecs();
             } else {
                 // 如果没有参数，显示默认信息
                 document.getElementById('productName').textContent = '商品信息加载失败';
@@ -307,7 +342,14 @@
                     paymentMethodName = '未知支付方式';
             }
             
-            alert(`订单提交成功！\n商品规格: ${selectedColor} ${selectedStorage} ${selectedNetwork}\n数量: ${quantity}\n支付方式: ${paymentMethodName}\n订单金额: ${finalPrice}`);
+            let specsText = '';
+            if (isPhoneCase) {
+                specsText = `适用手机型号: ${selectedPhoneModel}`;
+            } else {
+                specsText = `机身颜色: ${selectedColor} | 存储容量: ${selectedStorage} | 网络类型: ${selectedNetwork}`;
+            }
+            
+            alert(`订单提交成功！\n商品规格: ${specsText}\n数量: ${quantity}\n支付方式: ${paymentMethodName}\n订单金额: ${finalPrice}`);
         }
 
         function addNewAddress() {
@@ -436,6 +478,25 @@
             updateProductSpecs();
         }
 
+        // 选择手机型号
+        function selectPhoneModel(element, model) {
+            // 移除所有手机型号选项的选中状态
+            document.querySelectorAll('.phone-model-option').forEach(option => {
+                option.style.borderColor = '#ddd';
+                option.style.color = '#666';
+                option.style.fontWeight = '400';
+            });
+            
+            // 设置当前选项为选中状态
+            element.style.borderColor = '#ff6b35';
+            element.style.color = '#ff6b35';
+            element.style.fontWeight = '500';
+            selectedPhoneModel = model;
+            
+            // 更新商品规格显示
+            updateProductSpecs();
+        }
+
         // 改变数量
         function changeQuantity(change) {
             const newQuantity = Math.max(1, Math.min(2, quantity + change));
@@ -450,7 +511,11 @@
         function updateProductSpecs() {
             const specsElement = document.getElementById('productSpecs');
             if (specsElement) {
-                specsElement.textContent = `机身颜色: ${selectedColor} | 存储容量: ${selectedStorage} | 网络类型: ${selectedNetwork}`;
+                if (isPhoneCase) {
+                    specsElement.textContent = `适用手机型号: ${selectedPhoneModel}`;
+                } else {
+                    specsElement.textContent = `机身颜色: ${selectedColor} | 存储容量: ${selectedStorage} | 网络类型: ${selectedNetwork}`;
+                }
             }
         }
 
